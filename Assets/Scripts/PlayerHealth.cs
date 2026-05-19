@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public UIManager uiManager;
     public int maxLives = 3;
     private int currentLives;
 
@@ -14,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentLives = maxLives;
+        uiManager.UpdateHearts(currentLives);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -22,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
         if (isInvincible) return;
 
         currentLives--;
+        uiManager.UpdateHearts(currentLives);
         Debug.Log("剩余命数: " + currentLives);
 
         if (currentLives <= 0)
