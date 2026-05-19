@@ -28,4 +28,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        speed *= multiplier;
+    }
 }

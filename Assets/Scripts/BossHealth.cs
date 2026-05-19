@@ -38,18 +38,15 @@ public class BossHealth : MonoBehaviour
     {
         isPhaseTwo = true;
         Debug.Log("进入第二阶段");
-
-        // Boss变红提示玩家
         spriteRenderer.color = new Color(1f, 0.3f, 0.3f);
 
-        // 射速加快
-        bossShooter.fireRate = 0.8f;
+        // 调用新方法而不是直接改fireRate
+        bossShooter.SetPhaseTwo();
     }
 
     void Die()
     {
-        Debug.Log("Boss死亡，玩家胜利");
-        // 现在先只打印，之后加胜利界面
+        GameManager.Instance.Victory();
         gameObject.SetActive(false);
     }
 }

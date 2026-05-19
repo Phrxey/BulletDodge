@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isInvincible) return;
 
-        currentLives--;
+        //currentLives--;
         uiManager.UpdateHearts(currentLives);
         Debug.Log("剩余命数: " + currentLives);
 
@@ -57,7 +57,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("游戏结束");
+        Time.timeScale = 1f;
+        GameManager.Instance.GameOver();
         gameObject.SetActive(false);
     }
 
