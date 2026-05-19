@@ -23,7 +23,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("玩家被击中");
+            // 调用血量系统扣血
+            other.GetComponent<PlayerHealth>().TakeDamage();
             Destroy(gameObject);
         }
     }
