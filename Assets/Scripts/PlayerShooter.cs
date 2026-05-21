@@ -21,5 +21,7 @@ public class PlayerShooter : MonoBehaviour
                                    transform.position,
                                    Quaternion.identity);
         b.GetComponent<PlayerBullet>().SetDirection(Vector2.up);
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.playerShoot);
     }
 }

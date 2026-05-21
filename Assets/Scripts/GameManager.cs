@@ -15,13 +15,15 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 1f; // 重置时间，防止子弹时间卡住
+        Time.timeScale = 1f;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         gameOverPanel.SetActive(true);
     }
 
     public void Victory()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.victory);
         victoryPanel.SetActive(true);
     }
 

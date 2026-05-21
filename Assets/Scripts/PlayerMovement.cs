@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float slowDuration = 3f;
 
     private float currentSlowTime;
-    public Slider slowTimeBar; // 能量槽
+    public Slider slowTimeBar;
 
     void Start()
     {
@@ -32,6 +32,16 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleSlowTime()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && currentSlowTime > 0)
+        {
+            AudioManager.Instance.StartSlowTime();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift) || currentSlowTime <= 0)
+        {
+            AudioManager.Instance.StopSlowTime();
+        }
+
         if (Input.GetKey(KeyCode.LeftShift) && currentSlowTime > 0)
         {
             Time.timeScale = slowTimeScale;
@@ -47,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
             currentSlowTime = Mathf.Clamp(currentSlowTime, 0, slowDuration);
         }
 
-        // 更新UI，把剩余时间转换成0~1的比例
         if (slowTimeBar != null)
             slowTimeBar.value = currentSlowTime / slowDuration;
     }

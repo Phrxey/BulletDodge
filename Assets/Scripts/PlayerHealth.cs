@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public UIManager uiManager;
     public int maxLives = 3;
     private int currentLives;
 
@@ -11,12 +10,13 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvincible = false;
 
     private SpriteRenderer spriteRenderer;
+    public UIManager uiManager;
 
     void Start()
     {
         currentLives = maxLives;
-        uiManager.UpdateHearts(currentLives);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        uiManager.UpdateHearts(currentLives);
     }
 
     public void TakeDamage()
@@ -25,22 +25,19 @@ public class PlayerHealth : MonoBehaviour
 
         //currentLives--;
         uiManager.UpdateHearts(currentLives);
-        Debug.Log("剩余命数: " + currentLives);
+
+        // 玩家被击中音效
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHit);
 
         if (currentLives <= 0)
-        {
             Die();
-        }
         else
-        {
             StartCoroutine(InvincibleCoroutine());
-        }
     }
 
     IEnumerator InvincibleCoroutine()
     {
         isInvincible = true;
-
         float elapsed = 0f;
         while (elapsed < invincibleDuration)
         {
@@ -50,7 +47,6 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
             elapsed += 0.2f;
         }
-
         spriteRenderer.color = new Color(1, 1, 1, 1f);
         isInvincible = false;
     }
@@ -58,8 +54,8 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         GameManager.Instance.GameOver();
         gameObject.SetActive(false);
     }
-
-} // 这是PlayerHealth类的结束括号
+}

@@ -285,6 +285,9 @@ public class BossShooter : MonoBehaviour
             bullet.SetDirection(direction);
             bullet.SetSpeedMultiplier(speedMultiplier);
         }
+
+        // Boss发射音效
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.bossShoot);
     }
 
     public void SetPhaseTwo()

@@ -10,7 +10,7 @@ public class BossHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public bool isPhaseTwo = false;
 
-    public Slider healthBar; // 新增
+    public Slider healthBar;
 
     void Start()
     {
@@ -29,7 +29,9 @@ public class BossHealth : MonoBehaviour
     {
         currentHealth -= amount;
 
-        // 更新血量条
+        // Boss被击中音效
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.bossHit);
+
         if (healthBar != null)
             healthBar.value = currentHealth;
 
@@ -51,6 +53,9 @@ public class BossHealth : MonoBehaviour
     {
         if (healthBar != null)
             healthBar.value = 0;
+
+        // 爆炸音效
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.explosion);
         GameManager.Instance.Victory();
         gameObject.SetActive(false);
     }
