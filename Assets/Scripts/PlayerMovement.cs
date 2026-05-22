@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && currentSlowTime > 0)
         {
             AudioManager.Instance.StartSlowTime();
+            FindObjectOfType<SlowTimeEffect>().TriggerRipple();
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) || currentSlowTime <= 0)
@@ -59,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (slowTimeBar != null)
             slowTimeBar.value = currentSlowTime / slowDuration;
+    }
+
+    public bool IsSlowed()
+    {
+        return Input.GetKey(KeyCode.LeftShift) && currentSlowTime > 0;
     }
 
     void OnDestroy()
