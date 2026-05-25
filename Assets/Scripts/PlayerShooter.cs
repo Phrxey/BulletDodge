@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerShooter : MonoBehaviour
 {
     public GameObject playerBulletPrefab;
-    public float fireRate = 0.3f;
+    public float fireRate = 0.001f;
     private float nextFireTime;
 
     void Update()

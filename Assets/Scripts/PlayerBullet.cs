@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    public float speed = 10f;
-    public float damage = 10f;
+    public float speed = 30f;
+    public float damage = 2f;
     private Vector2 direction;
 
     public void SetDirection(Vector2 dir)

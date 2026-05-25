@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     public float slowTimeScale = 0.3f;
-    public float slowDuration = 3f;
+    public float slowDuration = 6f;
 
     private float currentSlowTime;
     public Slider slowTimeBar;

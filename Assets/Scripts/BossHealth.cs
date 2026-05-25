@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class BossHealth : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    public float maxHealth = 10000000f;
     private float currentHealth;
 
     private BossShooter bossShooter;
@@ -47,6 +47,18 @@ public class BossHealth : MonoBehaviour
         isPhaseTwo = true;
         spriteRenderer.color = new Color(1f, 0.3f, 0.3f);
         bossShooter.SetPhaseTwo();
+        StartCoroutine(PhaseTwoTransition());
+    }
+
+    System.Collections.IEnumerator PhaseTwoTransition()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = new Color(1f, 0.3f, 0.3f);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     void Die()
