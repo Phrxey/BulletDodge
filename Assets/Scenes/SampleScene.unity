@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   slowTimeScale: 0.3
-  slowDuration: 3
+  slowDuration: 6
   slowTimeBar: {fileID: 2044100183}
 --- !u!50 &26212003
 Rigidbody2D:
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBulletPrefab: {fileID: 3945027134141535843, guid: 4e4e1ad27ff7e28439aaa2aef0fb456b, type: 3}
-  fireRate: 0.3
+  fireRate: 0.05
 --- !u!1 &31954578
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +634,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6250787909521599112, guid: 98e7df705e2d8e444ba7636074189dc0, type: 3}
   player: {fileID: 26212005}
-  fireRate: 1.5
+  bulletCount: 48
+  angularSpeed: 15
+  radialSpeed: 3
 --- !u!212 &236303148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -714,7 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bbba66af2d53f438ffb7711c7bfa3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100000
+  maxHealth: 10000
   isPhaseTwo: 0
   healthBar: {fileID: 1207366377}
 --- !u!58 &236303151
@@ -1082,7 +1084,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10183786, g: 0.104425035, b: 0.10849059, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3496,6 +3498,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000828908}
   m_CullTransparentMesh: 1
+--- !u!1 &2035698733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035698735}
+  - component: {fileID: 2035698734}
+  m_Layer: 0
+  m_Name: Starfield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2035698734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035698733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406f3c26ca02cd3459905cff5c9af729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starCount: 200
+  scrollSpeed: 1
+  minSize: 0.02
+  maxSize: 0.08
+  meteorSprites:
+  - {fileID: 21300000, guid: d722e2ce533135941937f20ce07053f5, type: 3}
+  - {fileID: 21300000, guid: 171a831baa6a9784681651f82d0557bb, type: 3}
+  - {fileID: 21300000, guid: d840a909991d1a24baf96e165bde9c9a, type: 3}
+  - {fileID: 21300000, guid: e06eec454a7bc8a42b3ff18e05086e09, type: 3}
+  - {fileID: 21300000, guid: 266a5ad4a7cf37f4b8daf7bf76b135d0, type: 3}
+  - {fileID: 21300000, guid: 4711c2936aef0b14886a96316d9c6a69, type: 3}
+  - {fileID: 21300000, guid: a8ef01fe9984fc34c86ef406d1ecccbb, type: 3}
+  - {fileID: 21300000, guid: 47f3ff1602d3a114f8dea438f2d5dde4, type: 3}
+  - {fileID: 21300000, guid: 48f873532d381d540becabee14b3732d, type: 3}
+  meteorCount: 4
+  meteorMinSpeed: 1.2
+  meteorMaxSpeed: 1.8
+  meteorMinSize: 0.3
+  meteorMaxSize: 0.8
+--- !u!4 &2035698735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035698733}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 228.58388, y: 233.08195, z: -2.5160105}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044100181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,3 +3785,4 @@ SceneRoots:
   - {fileID: 2060542839}
   - {fileID: 259128133}
   - {fileID: 1259590447}
+  - {fileID: 2035698735}
