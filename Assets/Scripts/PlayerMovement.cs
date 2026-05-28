@@ -27,9 +27,13 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         Vector2 move = new Vector2(moveX, moveY).normalized;
-        transform.Translate(move * speed * Time.unscaledDeltaTime);
 
-        // 限制在摄像机范围内
+        // 按住X键减速到一半
+        float currentSpeed = Input.GetKey(KeyCode.C) ? speed * 0.4f : speed;
+
+        transform.Translate(move * currentSpeed * Time.unscaledDeltaTime);
+
+        // 边界限制
         Camera cam = Camera.main;
         float camHeight = cam.orthographicSize;
         float camWidth = camHeight * cam.aspect;

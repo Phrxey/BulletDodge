@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0940b22b1cec834ea9b33e286584f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3.5
   slowTimeScale: 0.3
   slowDuration: 6
   slowTimeBar: {fileID: 2044100183}
@@ -782,6 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 432568398}
   victoryPanel: {fileID: 645390665}
+  isGameOver: 0
 --- !u!4 &259128133
 Transform:
   m_ObjectHideFlags: 0

@@ -20,8 +20,8 @@ public class BossShooter : MonoBehaviour
     // ② 脉冲环
     const float RING_INTERVAL_P1 = 0.92f;   // P1 每波间隔
     const float RING_INTERVAL_P2 = 0.67f;   // P2 每波间隔
-    const float RING_SPEED_P1 = 2f;    // P1 最内层速度（每层 +0.4）
-    const float RING_SPEED_P2 = 2f;    // P2 最内层速度（每层 +0.4）
+    const float RING_SPEED_P1 = 2.5f;    // P1 最内层速度（每层 +0.4）
+    const float RING_SPEED_P2 = 3.5f;    // P2 最内层速度（每层 +0.4）
 
     // ③ 钟摆双臂
     const float PEND_INTERVAL_P1 = 0.0665f; // P1 每颗间隔
@@ -35,8 +35,8 @@ public class BossShooter : MonoBehaviour
     // ④ 扇形追踪
     const float FAN_INTERVAL_P1 = 1.08f;   // P1 每波间隔
     const float FAN_INTERVAL_P2 = 0.75f;   // P2 每波间隔
-    const float FAN_SPEED_P1 = 2.5f;
-    const float FAN_SPEED_P2 = 3f;
+    const float FAN_SPEED_P1 = 3f;
+    const float FAN_SPEED_P2 = 4f;
 
     // ⑤ 圆锯弧
     const float ARC_INTERVAL = 0.117f;  // 两阶段相同（弹数不同）
