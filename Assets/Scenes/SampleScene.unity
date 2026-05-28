@@ -634,9 +634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6250787909521599112, guid: 98e7df705e2d8e444ba7636074189dc0, type: 3}
   player: {fileID: 26212005}
-  bulletCount: 48
-  angularSpeed: 15
-  radialSpeed: 3
 --- !u!212 &236303148
 SpriteRenderer:
   m_ObjectHideFlags: 0
