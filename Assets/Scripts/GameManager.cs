@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
 
-    private bool isGameOver = false;
+    public bool isGameOver = false;
 
     void Awake()
     {

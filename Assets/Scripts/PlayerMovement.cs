@@ -28,6 +28,16 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         Vector2 move = new Vector2(moveX, moveY).normalized;
         transform.Translate(move * speed * Time.unscaledDeltaTime);
+
+        // 限制在摄像机范围内
+        Camera cam = Camera.main;
+        float camHeight = cam.orthographicSize;
+        float camWidth = camHeight * cam.aspect;
+
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, -camWidth, camWidth);
+        pos.y = Mathf.Clamp(pos.y, -camHeight, camHeight);
+        transform.position = pos;
     }
 
     void HandleSlowTime()

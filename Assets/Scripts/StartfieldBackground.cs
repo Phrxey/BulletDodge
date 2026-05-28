@@ -108,6 +108,9 @@ public class StarfieldBackground : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance != null && GameManager.Instance.isGameOver)
+            return;
+
         // 星星滚动
         foreach (Transform star in stars)
         {
