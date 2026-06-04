@@ -125,6 +125,8 @@ public class BossShooter : MonoBehaviour
 
         while (elapsed < duration)
         {
+            while (Time.timeScale == 0f) yield return null;
+
             float dt = Time.deltaTime;
             elapsed += dt;
             timer += dt;
@@ -158,6 +160,8 @@ public class BossShooter : MonoBehaviour
 
         while (elapsed < duration)
         {
+            while (Time.timeScale == 0f) yield return null;
+
             float dt = Time.deltaTime;
             elapsed += dt;
             timer += dt;
@@ -200,6 +204,8 @@ public class BossShooter : MonoBehaviour
 
         while (elapsed < duration)
         {
+            while (Time.timeScale == 0f) yield return null;
+
             float dt = Time.deltaTime;
             elapsed += dt;
             timer += dt;
@@ -235,6 +241,8 @@ public class BossShooter : MonoBehaviour
 
         while (elapsed < duration)
         {
+            while (Time.timeScale == 0f) yield return null;
+
             float dt = Time.deltaTime;
             elapsed += dt;
             timer += dt;
@@ -273,6 +281,8 @@ public class BossShooter : MonoBehaviour
 
         while (elapsed < duration)
         {
+            while (Time.timeScale == 0f) yield return null;
+
             float dt = Time.deltaTime;
             elapsed += dt;
             timer += dt;
@@ -328,6 +338,8 @@ public class BossShooter : MonoBehaviour
 
         while (elapsed < duration)
         {
+            while (Time.timeScale == 0f) yield return null;
+
             float dt = Time.deltaTime;
             elapsed += dt;
             timer += dt;

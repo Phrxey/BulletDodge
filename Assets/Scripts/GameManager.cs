@@ -7,32 +7,75 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
+    public GameObject pausePanel;
 
     public bool isGameOver = false;
+    private bool isPaused = false;
 
     void Awake()
     {
         Instance = this;
     }
 
+    void Update()
+    {
+        // 游戏结束时不能暂停
+        if (isGameOver) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+        AudioManager.Instance.StopBGM();
+
+        // 暂停时禁用玩家
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerMovement pm = player.GetComponent<PlayerMovement>();
+            if (pm != null) pm.enabled = false;
+            PlayerShooter ps = player.GetComponent<PlayerShooter>();
+            if (ps != null) ps.enabled = false;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+        AudioManager.Instance.PlayBGM();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerMovement pm = player.GetComponent<PlayerMovement>();
+            if (pm != null) pm.enabled = true;
+            PlayerShooter ps = player.GetComponent<PlayerShooter>();
+            if (ps != null) ps.enabled = true;
+        }
+    }
+
     public void GameOver()
     {
         if (isGameOver) return;
         isGameOver = true;
-
         Time.timeScale = 1f;
-
-        // 停止BGM
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.StopSlowTime();
-
-        // 播放失败音效
         AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
-
-        // 禁用玩家输入和子弹
         DisableAllBullets();
         DisablePlayer();
-
         gameOverPanel.SetActive(true);
     }
 
@@ -40,50 +83,49 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
         isGameOver = true;
-
         Time.timeScale = 1f;
-
-        // 停止BGM
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.StopSlowTime();
-
-        // 播放胜利音效
         AudioManager.Instance.PlaySFX(AudioManager.Instance.victory);
-
-        // 禁用子弹
         DisableAllBullets();
         DisablePlayer();
-
         victoryPanel.SetActive(true);
     }
 
     public void RestartGame()
     {
         isGameOver = false;
+        isPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void QuitGame()
+    {
+        Time.timeScale = 1f;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     void DisableAllBullets()
     {
-        // 找到所有子弹，停止它们的移动
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
         foreach (GameObject bullet in bullets)
         {
             Bullet b = bullet.GetComponent<Bullet>();
             if (b != null) b.enabled = false;
-
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             if (rb != null) rb.simulated = false;
         }
 
-        // 玩家子弹也一起停
         GameObject[] playerBullets = GameObject.FindGameObjectsWithTag("PlayerBullet");
         foreach (GameObject bullet in playerBullets)
         {
             PlayerBullet b = bullet.GetComponent<PlayerBullet>();
             if (b != null) b.enabled = false;
-
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             if (rb != null) rb.simulated = false;
         }
@@ -93,24 +135,9 @@ public class GameManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
-
-        // 禁用移动和射击脚本
         PlayerMovement pm = player.GetComponent<PlayerMovement>();
         if (pm != null) pm.enabled = false;
-
         PlayerShooter ps = player.GetComponent<PlayerShooter>();
         if (ps != null) ps.enabled = false;
-    }
-
-    public void QuitGame()
-    {
-        Time.timeScale = 1f;
-
-        // 编辑器里停止Play，打包后退出程序
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #else
-        Application.Quit();
-        #endif
     }
 }
